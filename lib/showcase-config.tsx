@@ -70,7 +70,6 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
     id: "card",
     name: "Card",
     description: "卡片组件,支持阴影、边框和悬浮效果",
-
     component: ({ variant = "default", shadow = "none", hoverable = false, padding = "md" }) => (
       <Card variant={variant} shadow={shadow} padding={padding} hoverable={hoverable}>
         <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-2'>Card Title</h3>
