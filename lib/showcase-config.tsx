@@ -1,9 +1,87 @@
 // lib/showcase-config.ts
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/custom-button";
 import type { ShowcaseComponent } from "../components/showcase/types";
+import { Button as TmButton } from "@/components/ui/tm-button";
 import { Card } from "@/components/ui/card";
 
 export const SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
+  {
+    id: "tm-button",
+    name: "TmButton",
+    description: "TM 主题的按钮组件，支持品牌色、白色和渐变三种颜色主题",
+
+    component: ({ variant = "primary", color = "brand", size = "lg", disabled = false, children = "Button CTA" }) => (
+      <TmButton variant={variant} color={color} size={size} disabled={disabled}>
+        {children}
+      </TmButton>
+    ),
+
+    propControls: {
+      variant: {
+        label: "Variant",
+        control: { type: "select", options: ["primary", "secondary", "text", "link"] as const },
+        defaultValue: "primary",
+      },
+      color: {
+        label: "Color",
+        control: { type: "select", options: ["brand", "white", "linear"] as const },
+        defaultValue: "brand",
+      },
+      size: {
+        label: "Size",
+        control: { type: "select", options: ["sm", "lg"] as const },
+        defaultValue: "lg",
+      },
+      disabled: {
+        label: "Disabled",
+        control: { type: "boolean" },
+        defaultValue: false,
+      },
+      children: {
+        label: "Text",
+        control: { type: "text" },
+        defaultValue: "Button CTA",
+      },
+    },
+
+    presets: [
+      { name: "Brand Primary", props: { variant: "primary", color: "brand", size: "lg" } },
+      { name: "Brand Secondary", props: { variant: "secondary", color: "brand", size: "lg" } },
+      { name: "White Primary", props: { variant: "primary", color: "white", size: "lg" } },
+      { name: "White Secondary", props: { variant: "secondary", color: "white", size: "lg" } },
+      { name: "Linear Primary", props: { variant: "primary", color: "linear", size: "lg" } },
+      { name: "Linear Secondary", props: { variant: "secondary", color: "linear", size: "lg" } },
+      { name: "Small Brand", props: { variant: "primary", color: "brand", size: "sm" } },
+      { name: "Text Link", props: { variant: "text", color: "brand", size: "lg" } },
+      { name: "Underline Link", props: { variant: "link", color: "brand", size: "lg" } },
+      { name: "Linear Text", props: { variant: "text", color: "linear", size: "lg" } },
+    ],
+
+    code: (props) => {
+      const propsStr = Object.entries(props)
+        .filter(([key, value]) => {
+          // 过滤默认值
+          const defaults: any = {
+            variant: "primary",
+            color: "brand",
+            size: "lg",
+            disabled: false,
+            children: "Button CTA",
+          };
+          return value !== defaults[key];
+        })
+        .map(([key, value]) => {
+          if (key === "children") return ""; // children 单独处理
+          if (typeof value === "string") return `${key}="${value}"`;
+          if (typeof value === "boolean") return value ? key : "";
+          return `${key}={${value}}`;
+        })
+        .filter(Boolean)
+        .join(" ");
+
+      return `<TmButton${propsStr ? " " + propsStr : ""}>\n  ${props.children || "Button CTA"}\n</TmButton>`;
+    },
+  },
   {
     id: "button",
     name: "Button",

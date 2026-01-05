@@ -8,6 +8,14 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+## 🎯 快速链接
+
+- 🚀 [快速开始指南](./QUICK_START.md) - **从这里开始！**
+- 🎨 [语义化类名](./SEMANTIC_CLASSNAMES.md) - 完整的语义化类名系统
+- 📖 [使用示例](./USAGE_EXAMPLES.md) - 实际组件示例
+- 📚 [设计 Token](./DESIGN_TOKENS.md) - 所有设计 token 详解
+- ⚡ [快速参考](./TOKEN_QUICKREF.md) - 常用类名速查
+
 ## 📖 项目介绍
 
 TM-UI 是一个**交互式 UI 组件展示系统**，旨在为 TM 官网项目构建自有组件库，逐步替代 Antd 组件。

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { ThemeToggle } from "@/components/showcase/theme-toggle";
-import ComponentCard from "@/components/showcase/componnet-card";
+import ComponentCard from "@/components/showcase/component-card";
+import { Button as TmButton } from "@/components/ui/tm-button";
 import { SHOWCASE_COMPONENTS } from "@/lib/showcase-config";
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
 
         {/* Main Content */}
         <main className='container mx-auto px-4 py-8'>
-          <div className='grid gap-8'>
+          <div className='flex flex-col gap-8'>
             {SHOWCASE_COMPONENTS.map((comp) => (
               <ComponentCard
                 key={comp.id}

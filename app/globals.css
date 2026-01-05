@@ -42,6 +42,178 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+
+  /* Brand 色阶 */
+  --color-brand-25: #fff8f6;
+  --color-brand-50: #fff6f0;
+  --color-brand-100: #ffd5c8;
+  --color-brand-200: #ffc09e;
+  --color-brand-300: #ffa175;
+  --color-brand-400: #ff7f4d;
+  --color-brand-500: #ff5924;
+  --color-brand-600: #d93e14;
+  --color-brand-700: #b32707;
+  --color-brand-800: #8c1500;
+  --color-brand-900: #660c00;
+  --color-brand-950: #562619;
+  --color-brand: #ff5924; /* default */
+
+ /* ========== 语义化颜色 - Border ========== */
+  /* Primary Border */
+  --color-border-primary-brand-default: #ff5924;
+  --color-border-primary-brand-hover: #d93e14;
+  --color-border-primary-gray-default: #ffffff;
+  --color-border-primary-gray-hover: #f0f4fb;
+  --color-border-primary-black-default: #101828;
+  --color-border-primary-black-hover: #161d31;
+
+  /* Secondary Border */
+  --color-border-secondary-gray-default: #f0f4fb;
+  --color-border-secondary-gray-hover: #a3b1c2;
+  --color-border-secondary-black-default: #1d2439;
+  --color-border-secondary-black-hover: #232a40;
+
+  /* Tertiary Border */
+  --color-border-tertiary-black-default: #232a40;
+  --color-border-tertiary-black-hover: #2f364c;
+
+  /* ========== 语义化颜色 - Text ========== */
+
+  /* Primary Text */
+  --color-text-primary-gray-default: #f0f4fb;
+  --color-text-primary-gray-hover: #ff5924;
+  --color-text-primary-brand-default: #ff5924;
+  --color-text-primary-brand-hover: #d93e14;
+
+  /* Secondary Text */
+  --color-text-secondary-gray-default: #a3b1c2;
+  --color-text-secondary-gray-hover: #727c90;
+
+  /* Tertiary Text */
+  --color-text-tertiary-gray-default: #727c90;
+  --color-text-tertiary-gray-hover: #2f364c;
+
+  /* Quarterary Text */
+  --color-text-quarterary-gray-default: #000212;
+
+ /* ========== 简化版语义化颜色（用于 text- 前缀）========== */
+  /* Primary */
+  --color-primary-gray-default: #f0f4fb;
+  --color-primary-gray-hover: #ff5924;
+  --color-primary-brand-default: #ff5924;
+  --color-primary-brand-hover: #d93e14;
+
+  /* Secondary */
+  --color-secondary-gray-default: #a3b1c2;
+  --color-secondary-gray-hover: #727c90;
+
+  /* Tertiary */
+  --color-tertiary-gray-default: #727c90;
+  --color-tertiary-gray-hover: #2f364c;
+
+  /* Quarterary */
+  --color-quarterary-gray-default: #000212;
+
+  /* Disabled */
+  --color-disabled: #2f364c;
+
+   /* ========== 语义化颜色 - Background (bgc) ========== */
+  /* Primary Background */
+  --color-bgc-primary-black-default: #000212;
+  --color-bgc-primary-black-hover: #080d19;
+  --color-bgc-primary-brand-default: #ff5924;
+  --color-bgc-primary-brand-hover: #d93e14;
+  --color-bgc-primary-gray-default: #f0f4fb;
+  --color-bgc-primary-gray-hover: #bfccda;
+
+  /* Secondary Background */
+  --color-bgc-secondary-black-default: #080d19;
+  --color-bgc-secondary-black-hover: #101828;
+
+  /* Tertiary Background */
+  --color-bgc-tertiary-black-default: #101828;
+  --color-bgc-tertiary-black-hover: #161d31;
+
+  /* Quarterary Background */
+  --color-bgc-quarterary-black-default: #1d2439;
+  --color-bgc-quarterary-black-hover: #232a40;
+  
+   /* ========== TM 设计系统 - 间距 ========== */
+   --spacing-none: 0;
+   --spacing-xss: 2px;
+   --spacing-xs: 4px;
+   --spacing-sm: 6px;
+   --spacing-md: 8px;
+   --spacing-lg: 12px;
+   --spacing-xl: 16px;
+   --spacing-2xl: 20px;
+   --spacing-3xl: 24px;
+   --spacing-4xl: 32px;
+   --spacing-5xl: 40px;
+   --spacing-6xl: 48px;
+   --spacing-7xl: 64px;
+   --spacing-8xl: 80px;
+   --spacing-9xl: 96px;
+   --spacing-10xl: 128px;
+   --spacing-11xl: 160px;
+ 
+   /* ========== TM 设计系统 - 字体大小 ========== */
+   --font-size-xss: 8px;
+   --font-size-xss--line-height: 12px;
+   
+   --font-size-xs: 12px;
+   --font-size-xs--line-height: 18px;
+   
+   --font-size-sm: 14px;
+   --font-size-sm--line-height: 20px;
+   
+   --font-size-md: 16px;
+   --font-size-md--line-height: 24px;
+   
+   --font-size-lg: 18px;
+   --font-size-lg--line-height: 26px;
+   
+   --font-size-xl: 20px;
+   --font-size-xl--line-height: 28px;
+   
+   --font-size-2xl: 24px;
+   --font-size-2xl--line-height: 34px;
+   
+   --font-size-3xl: 28px;
+   --font-size-3xl--line-height: 40px;
+   
+   --font-size-4xl: 32px;
+   --font-size-4xl--line-height: 42px;
+   
+   --font-size-5xl: 36px;
+   --font-size-5xl--line-height: 48px;
+   
+   --font-size-6xl: 40px;
+   --font-size-6xl--line-height: 52px;
+   
+   --font-size-7xl: 48px;
+   --font-size-7xl--line-height: 58px;
+   
+   --font-size-8xl: 56px;
+   --font-size-8xl--line-height: 68px;
+   
+   --font-size-9xl: 72px;
+   --font-size-9xl--line-height: 90px;
+   
+   --font-size-10xl: 80px;
+   --font-size-10xl--line-height: 96px;
+ 
+   /* ========== TM 设计系统 - 圆角 ========== */
+   --radius-none: 0;
+   --radius-xxs: 2px;
+   --radius-xs: 4px;
+   --radius-sm: 8px;
+   --radius-md: 12px;
+   --radius-lg: 16px;
+   --radius-xl: 20px;
+   --radius-2xl: 24px;
+   --radius-full: 9999px;
 }
 
 :root {
@@ -119,5 +291,15 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-linear-button {
+    background: linear-gradient(112deg, #6938ef 27.62%, #e833be 59.64%, #ff5924 100%);
+  }
+
+  .bg-linear-button-hover {
+    background: linear-gradient(112deg, #4a1fb8 27.62%, #b80abe 59.64%, #d93e14 100%);
   }
 }

@@ -1,0 +1,440 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ========== Tailwind CSS 4 主题配置 ========== */
+@theme {
+  /* ========== TM 设计系统 - 颜色 ========== */
+  
+  /* Gray 色阶 */
+  --color-gray-25: #ffffff;
+  --color-gray-50: #f0f4fb;
+  --color-gray-100: #bfccda;
+  --color-gray-200: #a3b1c2;
+  --color-gray-300: #727c90;
+  --color-gray-400: #2f364c;
+  --color-gray-500: #232a40;
+  --color-gray-600: #1d2439;
+  --color-gray-700: #161d31;
+  --color-gray-800: #101828;
+  --color-gray-900: #080d19;
+  --color-gray-950: #000212;
+
+  /* Brand 色阶 */
+  --color-brand-25: #fff8f6;
+  --color-brand-50: #fff6f0;
+  --color-brand-100: #ffd5c8;
+  --color-brand-200: #ffc09e;
+  --color-brand-300: #ffa175;
+  --color-brand-400: #ff7f4d;
+  --color-brand-500: #ff5924;
+  --color-brand-600: #d93e14;
+  --color-brand-700: #b32707;
+  --color-brand-800: #8c1500;
+  --color-brand-900: #660c00;
+  --color-brand-950: #562619;
+  --color-brand: #ff5924; /* default */
+
+  /* Error 色阶 */
+  --color-error-200: #fecdca;
+  --color-error-300: #fda29b;
+  --color-error-500: #f04438;
+  --color-error-600: #d92d20;
+  --color-error-700: #b42318;
+
+  /* Warning 色阶 */
+  --color-warning-100: #fef0c7;
+  --color-warning-300: #fedf89;
+  --color-warning-400: #b54708;
+  --color-warning-500: #f79009;
+  --color-warning-600: #dc6803;
+
+  /* Success 色阶 */
+  --color-success-100: #dcfae6;
+  --color-success-200: #abfcc9;
+  --color-success-400: #47cd89;
+  --color-success-500: #17b26a;
+  --color-success-600: #079455;
+
+  /* ========== 语义化颜色 - Border ========== */
+  /* Primary Border */
+  --color-border-primary-brand-default: #ff5924;
+  --color-border-primary-brand-hover: #d93e14;
+  --color-border-primary-gray-default: #ffffff;
+  --color-border-primary-gray-hover: #f0f4fb;
+  --color-border-primary-black-default: #101828;
+  --color-border-primary-black-hover: #161d31;
+
+  /* Secondary Border */
+  --color-border-secondary-gray-default: #f0f4fb;
+  --color-border-secondary-gray-hover: #a3b1c2;
+  --color-border-secondary-black-default: #1d2439;
+  --color-border-secondary-black-hover: #232a40;
+
+  /* Tertiary Border */
+  --color-border-tertiary-black-default: #232a40;
+  --color-border-tertiary-black-hover: #2f364c;
+
+  /* Other Border */
+  --color-border-quarterary: #2f364c;
+  --color-border-general: #bfccda;
+  --color-border-disabled: #161d31;
+
+  /* ========== 语义化颜色 - Background (bgc) ========== */
+  /* Primary Background */
+  --color-bgc-primary-black-default: #000212;
+  --color-bgc-primary-black-hover: #080d19;
+  --color-bgc-primary-brand-default: #ff5924;
+  --color-bgc-primary-brand-hover: #d93e14;
+  --color-bgc-primary-gray-default: #f0f4fb;
+  --color-bgc-primary-gray-hover: #bfccda;
+
+  /* Secondary Background */
+  --color-bgc-secondary-black-default: #080d19;
+  --color-bgc-secondary-black-hover: #101828;
+
+  /* Tertiary Background */
+  --color-bgc-tertiary-black-default: #101828;
+  --color-bgc-tertiary-black-hover: #161d31;
+
+  /* Quarterary Background */
+  --color-bgc-quarterary-black-default: #1d2439;
+  --color-bgc-quarterary-black-hover: #232a40;
+
+  /* ========== 语义化颜色 - Text ========== */
+  /* Primary Text */
+  --color-text-primary-gray-default: #f0f4fb;
+  --color-text-primary-gray-hover: #ff5924;
+  --color-text-primary-brand-default: #ff5924;
+  --color-text-primary-brand-hover: #d93e14;
+
+  /* Secondary Text */
+  --color-text-secondary-gray-default: #a3b1c2;
+  --color-text-secondary-gray-hover: #727c90;
+
+  /* Tertiary Text */
+  --color-text-tertiary-gray-default: #727c90;
+  --color-text-tertiary-gray-hover: #2f364c;
+
+  /* Quarterary Text */
+  --color-text-quarterary-gray-default: #000212;
+
+  /* Disabled Text */
+  --color-text-disabled: #2f364c;
+
+  /* ========== Alpha 透明度颜色 ========== */
+  --color-alpha-black-100: rgb(0 2 18 / 0.1);
+  --color-alpha-black-200: rgb(0 2 18 / 0.2);
+  --color-alpha-black-300: rgb(0 2 18 / 0.3);
+  --color-alpha-black-400: rgb(0 2 18 / 0.4);
+  --color-alpha-black-500: rgb(0 2 18 / 0.5);
+  --color-alpha-black-600: rgb(0 2 18 / 0.6);
+  --color-alpha-black-700: rgb(0 2 18 / 0.7);
+  --color-alpha-black-800: rgb(0 2 18 / 0.8);
+  --color-alpha-black-900: rgb(0 2 18 / 0.9);
+
+  /* ========== 简化版语义化颜色（用于 text- 前缀）========== */
+  /* Primary */
+  --color-primary-gray-default: #f0f4fb;
+  --color-primary-gray-hover: #ff5924;
+  --color-primary-brand-default: #ff5924;
+  --color-primary-brand-hover: #d93e14;
+
+  /* Secondary */
+  --color-secondary-gray-default: #a3b1c2;
+  --color-secondary-gray-hover: #727c90;
+
+  /* Tertiary */
+  --color-tertiary-gray-default: #727c90;
+  --color-tertiary-gray-hover: #2f364c;
+
+  /* Quarterary */
+  --color-quarterary-gray-default: #000212;
+
+  /* Disabled */
+  --color-disabled: #2f364c;
+
+  /* ========== backgroundColor 简化版 ========== */
+  --color-background-primary: #000212;
+  --color-background-secondary: #080d19;
+  --color-background-tertiary: #101828;
+
+  /* ========== TM 设计系统 - 间距 ========== */
+  --spacing-none: 0;
+  --spacing-xss: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+  --spacing-7xl: 64px;
+  --spacing-8xl: 80px;
+  --spacing-9xl: 96px;
+  --spacing-10xl: 128px;
+  --spacing-11xl: 160px;
+
+  /* ========== TM 设计系统 - 字体大小 ========== */
+  --font-size-xss: 8px;
+  --font-size-xss--line-height: 12px;
+  
+  --font-size-xs: 12px;
+  --font-size-xs--line-height: 18px;
+  
+  --font-size-sm: 14px;
+  --font-size-sm--line-height: 20px;
+  
+  --font-size-md: 16px;
+  --font-size-md--line-height: 24px;
+  
+  --font-size-lg: 18px;
+  --font-size-lg--line-height: 26px;
+  
+  --font-size-xl: 20px;
+  --font-size-xl--line-height: 28px;
+  
+  --font-size-2xl: 24px;
+  --font-size-2xl--line-height: 34px;
+  
+  --font-size-3xl: 28px;
+  --font-size-3xl--line-height: 40px;
+  
+  --font-size-4xl: 32px;
+  --font-size-4xl--line-height: 42px;
+  
+  --font-size-5xl: 36px;
+  --font-size-5xl--line-height: 48px;
+  
+  --font-size-6xl: 40px;
+  --font-size-6xl--line-height: 52px;
+  
+  --font-size-7xl: 48px;
+  --font-size-7xl--line-height: 58px;
+  
+  --font-size-8xl: 56px;
+  --font-size-8xl--line-height: 68px;
+  
+  --font-size-9xl: 72px;
+  --font-size-9xl--line-height: 90px;
+  
+  --font-size-10xl: 80px;
+  --font-size-10xl--line-height: 96px;
+
+  /* ========== TM 设计系统 - 圆角 ========== */
+  --radius-none: 0;
+  --radius-xxs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ========== 特殊尺寸和效果 ========== */
+  /* 背景尺寸 */
+  --background-size-200-400: 200% 400%;
+
+  /* 特殊宽度 */
+  --width-revert-layer: revert-layer;
+
+  /* 缩放 */
+  --scale-102: 1.02;
+
+  /* ========== shadcn/ui 兼容层（保留现有组件） ========== */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* ========== 动画 ========== */
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+
+  @keyframes bfcm-keyframe {
+    0% { background-position: 10% 50%; }
+    50% { background-position: 80% 50%; }
+    100% { background-position: 10% 50%; }
+  }
+
+  @keyframes background-slide {
+    0% { opacity: 0; }
+    16.67% { opacity: 1; }
+    33.33% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-bfcm: bfcm-keyframe 10s ease infinite;
+  --animate-background-slide: background-slide 6s ease-in-out infinite both;
+}
+
+/* ========== TM 主题变量（Light Mode）========== */
+:root {
+  --radius: 12px; /* 默认圆角 12px = md */
+  
+  /* 使用 TM 的颜色系统 */
+  --background: #ffffff; /* gray-25 */
+  --foreground: #000212; /* gray-950 */
+  
+  --card: #ffffff;
+  --card-foreground: #000212;
+  
+  --popover: #ffffff;
+  --popover-foreground: #000212;
+  
+  --primary: #ff5924; /* brand 主色 */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #f0f4fb; /* gray-50 */
+  --secondary-foreground: #000212;
+  
+  --muted: #bfccda; /* gray-100 */
+  --muted-foreground: #727c90; /* gray-300 */
+  
+  --accent: #ff5924; /* brand */
+  --accent-foreground: #ffffff;
+  
+  --destructive: #f04438; /* error-500 */
+  --destructive-foreground: #ffffff;
+  
+  --border: #bfccda; /* gray-100 */
+  --input: #a3b1c2; /* gray-200 */
+  --ring: #ff5924; /* brand */
+}
+
+/* ========== TM 主题变量（Dark Mode）========== */
+.dark {
+  --background: #000212; /* gray-950 */
+  --foreground: #f0f4fb; /* gray-50 */
+  
+  --card: #080d19; /* gray-900 */
+  --card-foreground: #f0f4fb;
+  
+  --popover: #101828; /* gray-800 */
+  --popover-foreground: #f0f4fb;
+  
+  --primary: #ff5924; /* brand */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #161d31; /* gray-700 */
+  --secondary-foreground: #f0f4fb;
+  
+  --muted: #2f364c; /* gray-400 */
+  --muted-foreground: #a3b1c2; /* gray-200 */
+  
+  --accent: #ff7f4d; /* brand-400 */
+  --accent-foreground: #ffffff;
+  
+  --destructive: #d92d20; /* error-600 */
+  --destructive-foreground: #ffffff;
+  
+  --border: #2f364c; /* gray-400 */
+  --input: #232a40; /* gray-500 */
+  --ring: #ff5924; /* brand */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* 滚动条样式（深色主题风格） */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-xs hover:bg-gray-600 transition-colors;
+  }
+
+  /* 选中文本样式 */
+  ::selection {
+    @apply bg-brand/20 text-gray-950;
+  }
+
+  /* Focus 样式优化 */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+}
+
+/* ========== TM 工具类 ========== */
+@layer utilities {
+  /* 渐变背景 */
+  .bg-bfcm-gradient {
+    background: linear-gradient(
+      80deg,
+      rgba(124, 86, 236, 0) 0.24%,
+      #7c56ec 24.26%,
+      #ba24d5 44.05%,
+      #f55728 68.52%,
+      rgba(245, 87, 40, 0) 100%
+    );
+    background-size: 200% 400%;
+  }
+
+  .bg-hover-bfcm-gradient {
+    background: linear-gradient(92deg, #9b8afb 3.95%, #d444f1 58.63%, #ff7f4d 93.68%);
+  }
+
+  .bg-linear-button {
+    background: linear-gradient(112deg, #6938ef 27.62%, #e833be 59.64%, #ff5924 100%);
+  }
+
+  .bg-linear-button-hover {
+    background: linear-gradient(112deg, #4a1fb8 27.62%, #b80abe 59.64%, #d93e14 100%);
+  }
+
+  /* 宽度 */
+  .w-revert-layer {
+    width: revert-layer;
+  }
+
+  /* 缩放 */
+  .scale-102 {
+    transform: scale(1.02);
+  }
+
+  /* 文本渐变 */
+  .text-gradient-brand {
+    @apply bg-linear-to-r from-brand-500 to-brand-600 bg-clip-text text-transparent;
+  }
+}

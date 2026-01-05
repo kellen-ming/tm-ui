@@ -9,19 +9,21 @@ interface PropControlsProps {
   onReset?: () => void;
 }
 
-export default function PropControls({ propControls, values, onChange, onReset }: PropControlsProps) {
+export default function PropControls(props: PropControlsProps) {
+  const { propControls, values, onChange, onReset } = props;
+  
   return (
     <div className='px-6 py-4 bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800'>
       <div className='flex items-center justify-between mb-3'>
-        <h3 className='text-sm font-semibold text-gray-700 dark:text-gray-300'>Props Configuration</h3>
+        <h3 className='font-semibold text-gray-700 dark:text-gray-300'>Props Configuration</h3>
         {onReset && (
-          <button onClick={onReset} className='text-xs text-blue-600 dark:text-blue-400 hover:underline'>
+          <button onClick={onReset} className='text-blue-600 dark:text-blue-400  hover:cursor-pointer'>
             Reset
           </button>
         )}
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
         {Object.entries(propControls).map(([key, config]) => (
           <PropControlItem
             key={key}
@@ -36,23 +38,20 @@ export default function PropControls({ propControls, values, onChange, onReset }
   );
 }
 
-// 单个控件
-function PropControlItem({
-  propKey,
-  config,
-  value,
-  onChange,
-}: {
+interface PropControlItemProps {
   propKey: string;
   config: PropControl;
   value: any;
   onChange: (value: any) => void;
-}) {
+}
+
+function PropControlItem(props: PropControlItemProps) {
+  const { propKey, config, value, onChange } = props;
   const { label, control } = config;
 
   return (
-    <div className='space-y-1.5'>
-      <label className='block text-xs font-medium text-gray-600 dark:text-gray-400'>{label}</label>
+    <div className='space-y-1.5 flex flex-col justify-center'>
+      <label className='block font-medium text-gray-600 dark:text-gray-400'>{label}</label>
 
       {control.type === "select" && (
         <select

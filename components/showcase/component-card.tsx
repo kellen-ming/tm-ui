@@ -42,7 +42,7 @@ export default function ComponentCard(props: ComponentCardProps) {
   };
 
   const handlePresetSelect = (props: Record<string, any>) => {
-    setCurrentProps({ ...defaultProps, ...props });
+    setCurrentProps({...defaultProps, ...props});
   };
 
   const generatedCode = useMemo(() => {
@@ -64,7 +64,7 @@ export default function ComponentCard(props: ComponentCardProps) {
           </div>
           <button
             onClick={() => setShowCode(!showCode)}
-            className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'
+            className='p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors hover:cursor-pointer'
             aria-label='Toggle code'>
             <Code2
               className={`w-5 h-5 transition-colors ${
@@ -89,7 +89,7 @@ export default function ComponentCard(props: ComponentCardProps) {
       )}
 
       {/* Component Preview */}
-      <div className='px-6 py-12 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-[200px]'>
+      <div className='px-6 py-12 flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-[200px]'>
         <Component {...currentProps} />
       </div>
 
