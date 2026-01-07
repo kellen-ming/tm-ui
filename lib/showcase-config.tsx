@@ -110,7 +110,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
         control: { type: "boolean" },
         defaultValue: false,
       },
-      children: {
+      inner_t: {
         label: "Text",
         control: { type: "text" },
         defaultValue: "Click Me",

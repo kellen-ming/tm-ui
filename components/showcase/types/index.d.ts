@@ -1,5 +1,3 @@
-// types/showcase.ts
-
 // 支持的控件类型
 export type PropControlType = 
   | { type: "select"; options: readonly string[] }
