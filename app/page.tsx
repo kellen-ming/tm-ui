@@ -5,6 +5,7 @@ import { ThemeToggle } from "@/components/showcase/theme-toggle";
 import ComponentCard from "@/components/showcase/component-card";
 import { Button as TmButton } from "@/components/ui/tm-button";
 import { SHOWCASE_COMPONENTS } from "@/lib/showcase-config";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -36,6 +37,26 @@ export default function Home() {
 
         {/* Main Content */}
         <main className='container mx-auto px-4 py-8'>
+          <div className='w-full'>
+            <Tabs>
+              <TabsList>
+                <TabsTrigger value='account'>Account</TabsTrigger>
+                <TabsTrigger value='password'>Password</TabsTrigger>
+              </TabsList>
+              <TabsContent value='account'>Make changes to your account here.</TabsContent>
+              <TabsContent value='password'>Change your password here.</TabsContent>
+            </Tabs>
+          </div>
+          <div className='w-full'>
+            <Tabs mode='light'>
+              <TabsList>
+                <TabsTrigger value='account'>Account</TabsTrigger>
+                <TabsTrigger value='password'>Password</TabsTrigger>
+              </TabsList>
+              <TabsContent value='account'>Make changes to your account here.</TabsContent>
+              <TabsContent value='password'>Change your password here.</TabsContent>
+            </Tabs>
+          </div>
           <div className='flex flex-col gap-8'>
             {SHOWCASE_COMPONENTS.map((comp) => (
               <ComponentCard
