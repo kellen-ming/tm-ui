@@ -6,7 +6,16 @@ export interface PageWrapperProps extends PropsWithChildren {
 }
 function PageWrapper(props: PageWrapperProps) {
   const { children, className } = props;
-  return <div className={cn("flex min-h-screen w-full flex-col items-center pb-10", className)}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        "flex min-h-screen w-full flex-col items-center pb-10",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
 PageWrapper.displayName = "PageWrapper";

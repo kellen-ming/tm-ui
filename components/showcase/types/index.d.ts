@@ -13,22 +13,23 @@ export interface PropControl {
 }
 
 // 组件配置
-export interface ShowcaseComponent {
+export interface ShowcaseComponent<TProps = Record<string, any>> {
   id: string;
   name: string;
   description: string;
   component: React.ComponentType<any>;
-  
+
   // 支持组合式控制
   propControls?: Record<string, PropControl>;
-  
+
   // 预设变体 (用于快速切换常用组合)
   presets?: Array<{
     name: string;
-    props: Record<string, any>;
+    props: Partial<TProps>;
   }>;
-  
-  code: (props: Record<string, any>) => string; // 动态生成代码
+
+  defaultValues: TProps;
+  code: (props: TProps, defaultValue: TProps) => string; // 动态生成代码
 }
 
 export type Theme = "light" | "dark";

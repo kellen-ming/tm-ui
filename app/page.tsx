@@ -6,9 +6,11 @@ import ComponentCard from "@/components/showcase/component-card";
 import { Button as TmButton } from "@/components/ui/tm-button";
 import { SHOWCASE_COMPONENTS } from "@/lib/showcase-config";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
+import { SliderDemo } from "./slider-demo";
 
 export default function Home() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const toggleTheme = () => {
@@ -38,6 +40,7 @@ export default function Home() {
         {/* Main Content */}
         <main className='container mx-auto px-4 py-8'>
           <div className='w-full'>
+            <SliderDemo />
             <Tabs>
               <TabsList>
                 <TabsTrigger value='account'>Account</TabsTrigger>

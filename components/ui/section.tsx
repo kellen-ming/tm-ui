@@ -57,25 +57,44 @@ const sectionVariants = cva("xs:px-xl md:px-4xl flex ", {
   },
 });
 
-export interface SectionProps extends VariantProps<typeof sectionVariants>, PropsWithChildren {
+export interface SectionProps
+  extends VariantProps<typeof sectionVariants>,
+    PropsWithChildren {
+  /** 命名标识 */
   sectionName?: string;
+  /** 内容区样式 */
   className?: ClassValue;
+  /** 内容区style */
   style?: React.CSSProperties;
+  /** 外层容器样式 */
   containerClassName?: ClassValue;
+  /** 外层容器style */
   containerStyle?: React.CSSProperties;
 }
 
 function Section(props: SectionProps) {
-  const { children, className, style, containerClassName, containerStyle, sectionName, ...restProps } = props;
+  const {
+    children,
+    className,
+    style,
+    containerClassName,
+    containerStyle,
+    sectionName,
+    ...restProps
+  } = props;
   return (
-    <section className={cn("w-full py-5xl md:py-8xl ", sectionName, containerClassName)} style={containerStyle}>
+    <section
+      className={cn(
+        "w-full py-5xl md:py-8xl ",
+        sectionName,
+        containerClassName
+      )}
+      style={containerStyle}
+    >
       <div
-        className={cn(
-          sectionVariants({ ...restProps }),
-
-          className
-        )}
-        style={style}>
+        className={cn(sectionVariants({ ...restProps }), className)}
+        style={style}
+      >
         {children}
       </div>
     </section>

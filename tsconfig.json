@@ -32,3 +32,52 @@
   ],
   "exclude": ["node_modules"]
 }
+
+
+// {
+//   "compilerOptions": {
+//     "incremental": true,
+//     "target": "ES2017",
+//     "jsx": "react-jsx",
+//     "lib": [
+//       "dom",
+//       "dom.iterable",
+//       "esnext"
+//     ],
+//     "module": "esnext",
+//     "moduleResolution": "bundler",
+//     "paths": {
+//       "@/*": [
+//         "./*"
+//       ]
+//     },
+//     "resolveJsonModule": true,
+//     "allowJs": true,
+//     "strict": true,
+//     "noImplicitAny": false,
+//     "noEmit": true,
+//     "esModuleInterop": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "isolatedModules": true,
+//     "skipLibCheck": true,
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ]
+//   },
+//   "include": [
+//     "next-env.d.ts",
+//     "types/**/*.d.ts",
+//     "**/*.ts",
+//     "**/*.tsx",
+//     ".next/types/**/*.ts",
+//     ".next/dev/types/**/*.ts",
+//     "**/*.mts",
+//     "next-fetch.d.ts",
+//     "vite-env.d.ts"
+//   ],
+//   "exclude": [
+//     "node_modules"
+//   ]
+// }

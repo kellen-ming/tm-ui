@@ -46,7 +46,7 @@ export default function ComponentCard(props: ComponentCardProps) {
   };
 
   const generatedCode = useMemo(() => {
-    return typeof component.code === "function" ? component.code(currentProps) : component.code;
+    return typeof component.code === "function" ? component.code(currentProps, component.defaultValues) : component.code;
   }, [component, currentProps]);
 
   const handleCopy = () => {

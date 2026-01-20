@@ -1,31 +1,46 @@
 // lib/showcase-config.ts
-import { Button } from "@/components/ui/custom-button";
-import type { ShowcaseComponent } from "../components/showcase/types";
-import { Button as TmButton } from "@/components/ui/tm-button";
-import { Card } from "@/components/ui/card";
+import { Button, ButtonProps } from "@/components/ui/button";
 
-export const SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
+import { CardGroup, CardGroupProps } from "@/components/ui/card-group";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsProps,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import { generatePropsStr } from "@/lib/utils";
+import { UserIcon } from "lucide-react";
+import { ShowcaseComponent } from "@/components/showcase/types";
+import { ButtonGroup, ButtonGroupProps } from "@/components/ui/button-group";
+import { Card, CardProps } from "@/components/ui/card";
+
+export const SHOWCASE_COMPONENTS: ShowcaseComponent<any>[] = [
   {
-    id: "tm-button",
-    name: "TmButton",
-    description: "TM 主题的按钮组件，支持品牌色、白色和渐变三种颜色主题",
-
-    component: ({ variant = "primary", color = "brand", size = "lg", disabled = false, children = "Button CTA" }) => (
-      <TmButton variant={variant} color={color} size={size} disabled={disabled}>
-        {children}
-      </TmButton>
+    id: "button",
+    name: "Button",
+    description: "TM 主题的按钮组，支持按钮、链接、文本、线性四种样式",
+    component: (props: ButtonProps & { inner_text: string }) => (
+      <Button {...props}>{props.inner_text}</Button>
     ),
-
     propControls: {
       variant: {
         label: "Variant",
-        control: { type: "select", options: ["primary", "secondary", "text", "link"] as const },
+        control: {
+          type: "select",
+          options: [
+            "primary",
+            "primary-white",
+            "secondary",
+            "secondary-white",
+            "text",
+            "text-white",
+            "link",
+            "link-white",
+            "linear",
+          ] as const,
+        },
         defaultValue: "primary",
-      },
-      color: {
-        label: "Color",
-        control: { type: "select", options: ["brand", "white", "linear"] as const },
-        defaultValue: "brand",
       },
       size: {
         label: "Size",
@@ -37,167 +52,491 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
         control: { type: "boolean" },
         defaultValue: false,
       },
-      children: {
-        label: "Text",
+      inner_text: {
+        label: "Inner Text",
         control: { type: "text" },
-        defaultValue: "Button CTA",
+        defaultValue: "Button",
       },
     },
-
+    defaultValues: {
+      variant: "primary",
+      size: "lg",
+      disabled: false,
+      inner_text: "Button",
+    },
     presets: [
-      { name: "Brand Primary", props: { variant: "primary", color: "brand", size: "lg" } },
-      { name: "Brand Secondary", props: { variant: "secondary", color: "brand", size: "lg" } },
-      { name: "White Primary", props: { variant: "primary", color: "white", size: "lg" } },
-      { name: "White Secondary", props: { variant: "secondary", color: "white", size: "lg" } },
-      { name: "Linear Primary", props: { variant: "primary", color: "linear", size: "lg" } },
-      { name: "Linear Secondary", props: { variant: "secondary", color: "linear", size: "lg" } },
-      { name: "Small Brand", props: { variant: "primary", color: "brand", size: "sm" } },
-      { name: "Text Link", props: { variant: "text", color: "brand", size: "lg" } },
-      { name: "Underline Link", props: { variant: "link", color: "brand", size: "lg" } },
-      { name: "Linear Text", props: { variant: "text", color: "linear", size: "lg" } },
+      {
+        name: "Primary",
+        props: { variant: "primary", size: "lg" },
+      },
+      {
+        name: "Primary White",
+        props: { variant: "primary-white", size: "lg" },
+      },
+      {
+        name: "Secondary",
+        props: { variant: "secondary", size: "lg" },
+      },
+      {
+        name: "Secondary White",
+        props: { variant: "secondary-white", size: "lg" },
+      },
+      {
+        name: "Text",
+        props: { variant: "text", size: "lg" },
+      },
+      {
+        name: "Text White",
+        props: { variant: "text-white", size: "lg" },
+      },
+      {
+        name: "Link",
+        props: { variant: "link", size: "lg" },
+      },
+      {
+        name: "Link White",
+        props: { variant: "link-white", size: "lg" },
+      },
+      {
+        name: "Linear",
+        props: { variant: "linear", size: "lg" },
+      },
     ],
 
-    code: (props) => {
-      const propsStr = Object.entries(props)
-        .filter(([key, value]) => {
-          // 过滤默认值
-          const defaults: any = {
-            variant: "primary",
-            color: "brand",
-            size: "lg",
-            disabled: false,
-            children: "Button CTA",
-          };
-          return value !== defaults[key];
-        })
-        .map(([key, value]) => {
-          if (key === "children") return ""; // children 单独处理
-          if (typeof value === "string") return `${key}="${value}"`;
-          if (typeof value === "boolean") return value ? key : "";
-          return `${key}={${value}}`;
-        })
-        .filter(Boolean)
-        .join(" ");
+    code: (
+      props: ButtonProps & { inner_text: string },
+      defaultValues: ButtonProps & { inner_text: string }
+    ) => {
+      const propsStr = generatePropsStr(props, defaultValues, ["inner_text"]);
 
-      return `<TmButton${propsStr ? " " + propsStr : ""}>\n  ${props.children || "Button CTA"}\n</TmButton>`;
+      return `<Button${propsStr ? " " + propsStr : ""}>\n  ${
+        props.inner_text || "Button"
+      }\n</Button>`;
     },
   },
   {
-    id: "button",
-    name: "Button",
-    description: "支持多种变体、尺寸和状态的按钮组件",
-
-    component: ({ variant = "default", size = "md", disabled = false, children = "Button" }) => (
-      <Button variant={variant} size={size} disabled={disabled}>
-        {children}
-      </Button>
-    ),
-
-    // 🎯 支持组合式控制
+    id: "button-group",
+    name: "Button Group",
+    description:
+      "TM 主题的按钮组组件，支持水平和垂直两种方向，支持控制对其方式、间距、对齐方式、换行方式",
+    component: (
+      props: ButtonGroupProps & {
+        containerWidth: number;
+        containerHeight: number;
+      }
+    ) => {
+      const { containerWidth, containerHeight, ...restProps } = props;
+      return (
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-center">
+            Container(width: {containerWidth}px, height: {containerHeight}px)
+          </p>
+          <div
+            className="overflow-auto border-b border-[#e5e5e5] bg-white px-6 py-3 dark:border-gray-600 dark:bg-gray-950"
+            style={{ width: containerWidth, height: containerHeight }}
+          >
+            <ButtonGroup {...restProps}>
+              <Button variant="linear">Button</Button>
+              <Button>Button</Button>
+            </ButtonGroup>
+          </div>
+        </div>
+      );
+    },
     propControls: {
-      variant: {
-        label: "Variant",
-        control: { type: "select", options: ["default", "outline", "ghost", "destructive"] as const },
-        defaultValue: "default",
+      orientation: {
+        label: "Orientation",
+        control: {
+          type: "select",
+          options: ["horizontal", "vertical"] as const,
+        },
+        defaultValue: "horizontal",
       },
-      size: {
-        label: "Size",
-        control: { type: "select", options: ["sm", "md", "lg"] as const },
-        defaultValue: "md",
+      gap: {
+        label: "Gap",
+        control: {
+          type: "select",
+          options: ["none", "xs", "sm", "md", "lg", "xl"] as const,
+        },
+        defaultValue: "xl",
       },
-      disabled: {
-        label: "Disabled",
-        control: { type: "boolean" },
-        defaultValue: false,
+      justify: {
+        label: "Justify",
+        control: {
+          type: "select",
+          options: [
+            "start",
+            "center",
+            "end",
+            "between",
+            "around",
+            "evenly",
+          ] as const,
+        },
+        defaultValue: "start",
       },
-      inner_t: {
-        label: "Text",
-        control: { type: "text" },
-        defaultValue: "Click Me",
+      align: {
+        label: "Align",
+        control: {
+          type: "select",
+          options: ["start", "center", "end", "stretch", "baseline"] as const,
+        },
+        defaultValue: "center",
+      },
+      wrap: {
+        label: "Wrap",
+        control: {
+          type: "select",
+          options: ["wrap", "nowrap", "wrapReverse"] as const,
+        },
+        defaultValue: "wrap",
+      },
+      containerWidth: {
+        label: "containerWidth",
+        control: {
+          type: "number",
+        },
+        defaultValue: 240,
+      },
+      containerHeight: {
+        label: "containerHeight",
+        control: {
+          type: "number",
+        },
+        defaultValue: 70,
       },
     },
-
-    // 🚀 快捷预设 (可选)
     presets: [
-      { name: "Primary", props: { variant: "default", size: "md" } },
-      { name: "Danger", props: { variant: "destructive", size: "md" } },
-      { name: "Small Outline", props: { variant: "outline", size: "sm" } },
+      { name: "Horizontal", props: { orientation: "horizontal" } },
+      { name: "Vertical", props: { orientation: "vertical" } },
     ],
+    defaultValues: {
+      orientation: "horizontal",
+      gap: "xl",
+      justify: "start",
+      align: "center",
+      wrap: "wrap",
+      containerWidth: 240,
+      containerHeight: 70,
+    },
+    code: (
+      props: ButtonGroupProps & {
+        containerWidth: number;
+        containerHeight: number;
+      },
+      defaultValues: ButtonGroupProps & {
+        containerWidth: number;
+        containerHeight: number;
+      }
+    ) => {
+      const propsStr = generatePropsStr(props, defaultValues, [
+        "containerWidth",
+        "containerHeight",
+      ]);
 
-    // 📝 动态生成代码
-    code: (props) => {
-      const propsStr = Object.entries(props)
-        .filter(([key, value]) => {
-          // 过滤默认值
-          const defaults: any = { variant: "default", size: "md", disabled: false, children: "Button" };
-          return value !== defaults[key];
-        })
-        .map(([key, value]) => {
-          if (typeof value === "string") return `${key}="${value}"`;
-          if (typeof value === "boolean") return value ? key : "";
-          return `${key}={${value}}`;
-        })
-        .filter(Boolean)
-        .join(" ");
-
-      return `<Button${propsStr ? " " + propsStr : ""}>${props.children || "Button"}</Button>`;
+      return `<ButtonGroup${propsStr ? " " + propsStr : ""}>
+  <Button color="linear">Button</Button>
+  <Button>Button</Button>
+</ButtonGroup>`;
     },
   },
-
   {
     id: "card",
     name: "Card",
-    description: "卡片组件,支持阴影、边框和悬浮效果",
-    component: ({ variant = "default", shadow = "none", hoverable = false, padding = "md" }) => (
-      <Card variant={variant} shadow={shadow} padding={padding} hoverable={hoverable}>
-        <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-2'>Card Title</h3>
-        <p className='text-sm text-gray-600 dark:text-gray-400'>This is a card component with customizable styles.</p>
-      </Card>
-    ),
-
+    description: "TM 主题的卡片组件，支持阴影、边框和悬浮效果、圆角和内边距",
+    component: (props: CardProps) => {
+      return (
+        <Card {...props}>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-semibold  dark:text-white">
+              Card Title
+            </h3>
+            <p className="text-sm  dark:text-gray-25">Card content goes here</p>
+          </div>
+        </Card>
+      );
+    },
     propControls: {
       variant: {
         label: "Variant",
-        control: { type: "select", options: ["default", "elevated"] as const },
-        defaultValue: "default",
+        control: { type: "select", options: ["primary", "secondary"] as const },
+        defaultValue: "primary",
       },
       shadow: {
         label: "Shadow",
-        control: { type: "select", options: ["none", "sm", "md", "lg"] as const },
+        control: {
+          type: "select",
+          options: ["none", "sm", "md", "lg"] as const,
+        },
         defaultValue: "none",
+      },
+      rounded: {
+        label: "Rounded",
+        control: {
+          type: "select",
+          options: ["sm", "md", "lg", "xl", "2xl", "3xl"] as const,
+        },
+        defaultValue: "md",
       },
       padding: {
         label: "Padding",
-        control: { type: "select", options: ["sm", "md", "lg"] as const },
-        defaultValue: "md",
+        control: { type: "select", options: ["lg", "3xl", "4xl"] as const },
+        defaultValue: "4xl",
       },
-      hoverable: {
-        label: "Hoverable",
+      hover: {
+        label: "Hover",
         control: { type: "boolean" },
         defaultValue: false,
       },
     },
-
     presets: [
-      { name: "Simple", props: { variant: "default", shadow: "none" } },
-      { name: "Elevated", props: { variant: "elevated", shadow: "lg" } },
-      { name: "Interactive", props: { variant: "default", shadow: "md", hoverable: true } },
+      { name: "Primary", props: { variant: "primary", shadow: "none" } },
+      { name: "Secondary", props: { variant: "secondary", shadow: "none" } },
     ],
-
-    code: (props) => {
-      const propsStr = Object.entries(props)
-        .filter(([_, value]) => value !== "default" && value !== "md" && value !== false)
-        .map(([key, value]) => (typeof value === "boolean" ? key : `${key}="${value}"`))
-        .join(" ");
+    defaultValues: {
+      variant: "primary",
+      shadow: "none",
+      padding: "4xl",
+      rounded: "md",
+      hover: false,
+    },
+    code: (props: CardProps, defaultValues: CardProps) => {
+      const propsStr = generatePropsStr(props, defaultValues);
 
       return `<Card${propsStr ? " " + propsStr : ""}>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-  </CardHeader>
-  <CardContent>
-    Card content goes here
-  </CardContent>
+  <div className="flex flex-col gap-2">
+    <h3 className="text-lg font-semibold text-gray-50 dark:text-white">Card Title</h3>
+    <p className="text-sm text-gray-50 dark:text-gray-25">Card content goes here</p>
+  </div>
 </Card>`;
     },
   },
+  {
+    id: "card-group",
+    name: "Card Group",
+    description:
+      "TM 主题的卡片组组件，支持水平和垂直两种方向，支持控制对其方式、间距、对齐方式、换行方式",
+    component: (
+      props: CardGroupProps & {
+        containerWidth: number;
+        containerHeight: number;
+      }
+    ) => {
+      const { containerWidth, containerHeight, ...restProps } = props;
+      return (
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-center">
+            Container(width: {containerWidth}px, height: {containerHeight}px)
+          </p>
+          <div
+            className="overflow-auto border-b border-[#e5e5e5] bg-white px-6 py-3 dark:border-gray-600 dark:bg-gray-950"
+            style={{ width: containerWidth, height: containerHeight }}
+          >
+            <CardGroup {...restProps}>
+              <Card variant="primary" shadow="none">
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-lg font-semibold  dark:text-white">
+                    Card Title
+                  </h3>
+                  <p className="text-sm  dark:text-gray-25">
+                    Card content goes here
+                  </p>
+                </div>
+              </Card>
+              <Card variant="secondary" shadow="none">
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-lg font-semibold  dark:text-white">
+                    Card Title
+                  </h3>
+                  <p className="text-sm  dark:text-gray-25">
+                    Card content goes here
+                  </p>
+                </div>
+              </Card>
+            </CardGroup>
+          </div>
+        </div>
+      );
+    },
+    propControls: {
+      orientation: {
+        label: "Orientation",
+        control: {
+          type: "select",
+          options: ["horizontal", "vertical"] as const,
+        },
+        defaultValue: "horizontal",
+      },
+      gap: {
+        label: "Gap",
+        control: {
+          type: "select",
+          options: [
+            "none",
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+          ] as const,
+        },
+        defaultValue: "3xl",
+      },
+      justify: {
+        label: "Justify",
+        control: {
+          type: "select",
+          options: [
+            "start",
+            "center",
+            "end",
+            "between",
+            "around",
+            "evenly",
+          ] as const,
+        },
+        defaultValue: "start",
+      },
+      align: {
+        label: "Align",
+        control: {
+          type: "select",
+          options: ["start", "center", "end", "stretch", "baseline"] as const,
+        },
+        defaultValue: "center",
+      },
+      wrap: {
+        label: "Wrap",
+        control: {
+          type: "select",
+          options: ["wrap", "nowrap", "wrapReverse"] as const,
+        },
+        defaultValue: "wrap",
+      },
+      containerWidth: {
+        label: "containerWidth",
+        control: {
+          type: "number",
+        },
+        defaultValue: 520,
+      },
+      containerHeight: {
+        label: "containerHeight",
+        control: {
+          type: "number",
+        },
+        defaultValue: 150,
+      },
+    },
+    presets: [
+      { name: "Horizontal", props: { orientation: "horizontal" } },
+      { name: "Vertical", props: { orientation: "vertical" } },
+    ],
+    defaultValues: {
+      orientation: "horizontal",
+      gap: "xl",
+      justify: "start",
+      align: "center",
+      wrap: "wrap",
+      containerWidth: 520,
+      containerHeight: 150,
+    },
+    code: (
+      props: ButtonGroupProps & {
+        containerWidth: number;
+        containerHeight: number;
+      },
+      defaultValues: ButtonGroupProps & {
+        containerWidth: number;
+        containerHeight: number;
+      }
+    ) => {
+      const propsStr = generatePropsStr(props, defaultValues, [
+        "containerWidth",
+        "containerHeight",
+      ]);
+
+      return `<ButtonGroup${propsStr ? " " + propsStr : ""}>
+  <Card variant="primary" shadow="none">
+    <div className="flex flex-col gap-2">
+      <h3 className="text-lg font-semibold  dark:text-white">Card Title</h3>
+      <p className="text-sm  dark:text-gray-25">Card content goes here</p>
+    </div>
+  </Card>
+  <Card variant="secondary" shadow="none">
+    <div className="flex flex-col gap-2">
+      <h3 className="text-lg font-semibold  dark:text-white">Card Title</h3>
+      <p className="text-sm  dark:text-gray-25">Card content goes here</p>
+    </div>
+  </Card>
+</CardGroup>`;
+    },
+  },
+  {
+    id: "tabs",
+    name: "Tabs",
+    description:
+      "TM 主题的tabs组件，支持按钮和幽灵两种风格，支持亮色和暗色两种主题",
+    component: (props: TabsProps) => {
+      return (
+        <div className="flex w-full items-center justify-center text-center">
+          <Tabs {...props} className="w-full items-center justify-center">
+            <TabsList>
+              <TabsTrigger value="account">Account</TabsTrigger>
+              <TabsTrigger value="password">Password</TabsTrigger>
+              <TabsTrigger value="user">User</TabsTrigger>
+              <TabsTrigger value="settings">Settings</TabsTrigger>
+              <TabsTrigger value="icon">
+                <UserIcon />
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">
+              Make changes to your account here.
+            </TabsContent>
+            <TabsContent value="password">
+              Change your password here.
+            </TabsContent>
+            <TabsContent value="user">User content here.</TabsContent>
+            <TabsContent value="settings">Settings content here.</TabsContent>
+            <TabsContent value="icon">
+              <UserIcon />
+            </TabsContent>
+          </Tabs>
+        </div>
+      );
+    },
+    propControls: {
+      variant: {
+        label: "Variant",
+        control: { type: "select", options: ["button", "ghost"] as const },
+        defaultValue: "ghost",
+      },
+      mode: {
+        label: "Mode",
+        control: { type: "select", options: ["light", "dark"] as const },
+        defaultValue: "dark",
+      },
+    },
+    defaultValues: {
+      variant: "ghost",
+      mode: "dark",
+    },
+    code: (props: TabsProps, defaultValues: TabsProps) => {
+      const propsStr = generatePropsStr(props, defaultValues);
+      return `<Tabs${
+        propsStr ? " " + propsStr : ""
+      } className="w-full items-center justify-center">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>`;
+    },
+  },
 ];
+
