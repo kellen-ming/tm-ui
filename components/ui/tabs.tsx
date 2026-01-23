@@ -65,7 +65,7 @@ const tabsTriggerVariants = cva(
     variants: {
       variant: {
         button: `
-          px-lg h-[32px]
+          px-lg h-4xl
           relative z-10
           transition-[color] duration-300 ease-in-out
           data-[state=active]:text-quarterary-gray-default
@@ -193,7 +193,7 @@ function TabsList({
       {variant === "button" && indicatorStyle && (
         <span
           className={cn(
-            "absolute left-0 top-[6px] h-[calc(100%-12px)] rounded-sm bg-bgc-primary-gray-default transition-[transform,width] duration-300 ease-in-out",
+            "absolute left-0 top-sm h-[calc(100%-12px)] rounded-sm bg-bgc-primary-gray-default transition-[transform,width] duration-300 ease-in-out",
             {
               "bg-bgc-primary-black-default": mode === "light",
               "bg-bgc-primary-gray-default": mode === "dark",

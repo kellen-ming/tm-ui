@@ -3,11 +3,10 @@
 import { useState } from "react";
 import { ThemeToggle } from "@/components/showcase/theme-toggle";
 import ComponentCard from "@/components/showcase/component-card";
-import { Button as TmButton } from "@/components/ui/tm-button";
 import { SHOWCASE_COMPONENTS } from "@/lib/showcase-config";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Slider } from "@/components/ui/slider";
 import { SliderDemo } from "./slider-demo";
+import { AccordionDemo } from "./accordion-demo";
 
 export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -40,6 +39,9 @@ export default function Home() {
         {/* Main Content */}
         <main className='container mx-auto px-4 py-8'>
           <div className='w-full'>
+            <AccordionDemo />
+            <br/>
+            <hr/>
             <SliderDemo />
             <Tabs>
               <TabsList>
