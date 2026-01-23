@@ -6,6 +6,7 @@ import type { ShowcaseComponent } from "./types";
 import PropControls from "./props-controls";
 import PresetSelector from "./preset-selector";
 import CodeBlock from "./code-block";
+import ExternalResources from "./external-resources";
 
 interface ComponentCardProps {
   component: ShowcaseComponent;
@@ -87,7 +88,11 @@ export default function ComponentCard(props: ComponentCardProps) {
           onReset={handleReset}
         />
       )}
-
+      {/* External Resources */}
+      <ExternalResources
+        moreExamples={component.moreExamples}
+        moreApiReferences={component.moreApiReferences}
+      />
       {/* Component Preview */}
       <div className='px-6 py-12 flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-[200px]'>
         <Component {...currentProps} />

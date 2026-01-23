@@ -7,6 +7,7 @@ import { SHOWCASE_COMPONENTS } from "@/lib/showcase-config";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SliderDemo } from "./slider-demo";
 import { AccordionDemo } from "./accordion-demo";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -23,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <div className={theme === "dark" ? "dark" : ""}>
+    <div className={cn('text-primary-brand-default',theme === "dark" ? "dark" : "")}>
       <div className='min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors'>
         {/* Header */}
         <header className='sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 backdrop-blur'>
@@ -38,20 +39,6 @@ export default function Home() {
 
         {/* Main Content */}
         <main className='container mx-auto px-4 py-8'>
-          <div className='w-full'>
-            <AccordionDemo />
-            <br/>
-            <hr/>
-            <SliderDemo />
-            <Tabs>
-              <TabsList>
-                <TabsTrigger value='account'>Account</TabsTrigger>
-                <TabsTrigger value='password'>Password</TabsTrigger>
-              </TabsList>
-              <TabsContent value='account'>Make changes to your account here.</TabsContent>
-              <TabsContent value='password'>Change your password here.</TabsContent>
-            </Tabs>
-          </div>
           <div className='w-full'>
             <Tabs mode='light'>
               <TabsList>

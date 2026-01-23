@@ -9,11 +9,15 @@ import {
   TabsProps,
   TabsTrigger,
 } from "@/components/ui/tabs";
+import { Slider as TmSlider } from "@/components/ui/tm-slider";
 import { generatePropsStr } from "@/lib/utils";
 import { UserIcon } from "lucide-react";
 import { ShowcaseComponent } from "@/components/showcase/types";
 import { ButtonGroup, ButtonGroupProps } from "@/components/ui/button-group";
 import { Card, CardProps } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionProps, AccordionTrigger } from "@/components/ui/accordion";
+import { SliderProps } from "@/components/ui/tm-slider";
+import { Toggle, ToggleProps } from "@/components/ui/toggle";
 
 export const SHOWCASE_COMPONENTS: ShowcaseComponent<any>[] = [
   {
@@ -520,6 +524,14 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponent<any>[] = [
         defaultValue: "dark",
       },
     },
+    moreExamples: {
+      title: "Tabs in Shadcn UI",
+      url: "https://ui.shadcn.com/docs/components/tabs",
+    },
+    moreApiReferences: {
+      title: "Tabs in Radix UI",
+      url: "https://www.radix-ui.com/docs/primitives/components/tabs",
+    },
     defaultValues: {
       variant: "ghost",
       mode: "dark",
@@ -536,6 +548,176 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponent<any>[] = [
   <TabsContent value="account">Make changes to your account here.</TabsContent>
   <TabsContent value="password">Change your password here.</TabsContent>
 </Tabs>`;
+    },
+  },
+  {
+    id: "accordion",
+    name: "Accordion",
+    description:
+      "TM 主题的accordion组件，支持默认和outline两种风格，支持单选和多选两种模式，支持折叠和展开两种状态",
+    presets: [
+      {
+        name: "Single",
+        props: { type: "single", variant: "default", collapsible: true },
+      },
+      {
+        name: "Multiple",
+        props: { type: "multiple", variant: "default", collapsible: true },
+      },
+      {
+        name: "Single Outline",
+        props: { type: "single", variant: "outline", collapsible: true },
+      },
+      {
+        name: "Multiple Outline",
+        props: { type: "multiple", variant: "outline", collapsible: true },
+      },
+    ],
+    moreExamples: {
+      title: "Accordion in Shadcn UI",
+      url: "https://ui.shadcn.com/docs/components/accordion",
+    },
+    moreApiReferences: {
+      title: "Accordion in Radix UI",
+      url: "https://www.radix-ui.com/docs/primitives/components/accordion",
+    },
+    component: (props: AccordionProps) => {
+      return (
+        <div className="w-full max-w-[592px]">
+          <Accordion {...props}>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                Is there a free trial available?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, you can try us for free for 30 days. If you want, we’ll
+                provide you with a free, personalized 30-minute onboarding call
+                to get you up and running as soon as possible.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>
+                Is there a free trial available?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, you can try us for free for 30 days. If you want, we’ll
+                provide you with a free, personalized 30-minute onboarding call
+                to get you up and running as soon as possible.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
+    },
+    propControls: {
+      variant: {
+        label: "Variant",
+        control: { type: "select", options: ["default", "outline"] as const },
+        defaultValue: "default",
+      },
+      type: {
+        label: "Type",
+        control: { type: "select", options: ["single", "multiple"] as const },
+        defaultValue: "single",
+      },
+      collapsible: {
+        label: "Collapsible",
+        control: { type: "boolean" },
+        defaultValue: true,
+      },
+    },
+    defaultValues: {
+      variant: "default",
+      type: "single",
+      collapsible: true,
+    },
+    code: (props: AccordionProps, defaultValues: AccordionProps) => {
+      let propsStr = generatePropsStr<AccordionProps>(props, defaultValues, [
+        // @ts-expect-error - collapsible is not a valid prop for AccordionProps
+        "collapsible",
+      ]);
+
+      if (props.type === "single" && props.collapsible) {
+        propsStr = `${propsStr} collapsible`;
+      }
+
+      return `<Accordion${propsStr ? " " + propsStr : ""}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is there a free trial available?</AccordionTrigger>
+    <AccordionContent>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Is there a free trial available?</AccordionTrigger>
+    <AccordionContent>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</AccordionContent>
+  </AccordionItem>
+</Accordion>`;
+    },
+  },
+  {
+    id: "slider",
+    name: "Slider",
+    description: "TM 主题的slider组件，支持亮色和暗色两种主题",
+    component: (props: SliderProps) => {
+      return <TmSlider {...props} />;
+    },
+    moreExamples: {
+      title: "Slider in Shadcn UI",
+      url: "https://ui.shadcn.com/docs/components/slider",
+    },
+    moreApiReferences: {
+      title: "Slider in Radix UI",
+      url: "https://www.radix-ui.com/docs/primitives/components/slider",
+    },
+    propControls: {
+      mode: {
+        label: "Mode",
+        control: { type: "select", options: ["light", "dark"] as const },
+        defaultValue: "dark",
+      },
+    },
+    defaultValues: {
+      mode: "dark",
+    },
+    code: (props: SliderProps, defaultValues: SliderProps) => {
+      const propsStr = generatePropsStr(props, defaultValues);
+      return `<Slider${propsStr ? " " + propsStr : ""} />`;
+    },
+  },
+  {
+    id: "toggle",
+    name: "Toggle",
+    description:
+      "TM 主题的toggle组件，支持outline和text两种风格，支持亮色和暗色两种主题, 自带展开和收起图标",
+    component: (props: ToggleProps) => {
+      return <Toggle {...props}>Show More</Toggle>;
+    },
+    propControls: {
+      variant: {
+        label: "Variant",
+        control: { type: "select", options: ["outline", "text"] as const },
+        defaultValue: "outline",
+      },
+      mode: {
+        label: "Mode",
+        control: { type: "select", options: ["light", "dark"] as const },
+        defaultValue: "dark",
+      },
+    },
+    moreExamples: {
+      title: "Toggle in Shadcn UI",
+      url: "https://ui.shadcn.com/docs/components/toggle",
+    },
+    moreApiReferences: {
+      title: "Toggle in Radix UI",
+      url: "https://www.radix-ui.com/docs/primitives/components/toggle",
+    },
+    defaultValues: {
+      variant: "outline",
+      mode: "dark",
+    },
+    code: (props: ToggleProps, defaultValues: ToggleProps) => {
+      const propsStr = generatePropsStr(props, defaultValues);
+      return `<Toggle${propsStr ? " " + propsStr : ""} />`;
     },
   },
 ];

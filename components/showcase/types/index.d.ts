@@ -30,6 +30,13 @@ export interface ShowcaseComponent<TProps = Record<string, any>> {
 
   defaultValues: TProps;
   code: (props: TProps, defaultValue: TProps) => string; // 动态生成代码
+  moreExamples?: ExternalResource;
+  moreApiReferences?: ExternalResource;
 }
+
+export type ExternalResource = {
+  title: string;
+  url: string;
+};
 
 export type Theme = "light" | "dark";
