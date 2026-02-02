@@ -102,6 +102,9 @@
   --color-bgc-quarterary-black-default: #1d2439;
   --color-bgc-quarterary-black-hover: #232a40;
 
+  /* White Background */
+  --color-bgc-secondary-gray-default: #ffffff;
+
   /* ========== 语义化颜色 - Text ========== */
   /* Primary Text */
   --color-text-primary-gray-default: #f0f4fb;
@@ -119,6 +122,7 @@
 
   /* Quarterary Text */
   --color-text-quarterary-gray-default: #000212;
+
 
   /* Disabled Text */
   --color-text-disabled: #2f364c;

@@ -128,7 +128,7 @@
   --color-bgc-primary-gray-hover: #bfccda;
 
   /* Secondary Background */
-  --color-bgc-secondary-black-default: #080d19;
+  --color-bgc-secondary-black-default: #080d19; 
   --color-bgc-secondary-black-hover: #101828;
 
   /* Tertiary Background */
@@ -138,6 +138,9 @@
   /* Quarterary Background */
   --color-bgc-quarterary-black-default: #1d2439;
   --color-bgc-quarterary-black-hover: #232a40;
+
+  /* White Background */
+  --color-bgc-secondary-gray-default: #ffffff;
   
    /* ========== TM 设计系统 - 间距 ========== */
    --spacing-none: 0;
@@ -301,5 +304,15 @@
 
   .bg-linear-button-hover {
     background: linear-gradient(112deg, #4a1fb8 27.62%, #b80abe 59.64%, #d93e14 100%);
+  }
+
+  /* Hide native search clear when we show our own (type="search" + clearable) */
+  .tm-input-container input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .tm-input-container input[type="search"]::-moz-search-cancel-button {
+    display: none;
   }
 }

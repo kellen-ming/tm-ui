@@ -1,5 +1,5 @@
 // lib/showcase-config.ts
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/tm-button";
 
 import { CardGroup, CardGroupProps } from "@/components/ui/card-group";
 import {
@@ -13,7 +13,7 @@ import { Slider as TmSlider } from "@/components/ui/tm-slider";
 import { generatePropsStr } from "@/lib/utils";
 import { UserIcon } from "lucide-react";
 import { ShowcaseComponent } from "@/components/showcase/types";
-import { ButtonGroup, ButtonGroupProps } from "@/components/ui/button-group";
+import { ButtonGroup, ButtonGroupProps } from "@/components/ui/button-wrapper";
 import { Card, CardProps } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionProps, AccordionTrigger } from "@/components/ui/accordion";
 import { SliderProps } from "@/components/ui/tm-slider";
