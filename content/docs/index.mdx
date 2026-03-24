@@ -1,0 +1,61 @@
+---
+title: 文档总览
+description: TM UI 组件库文档原型，后续会逐步补充组件说明、示例和最佳实践。
+---
+
+<Callout type="idea" title="当前阶段">
+  这套文档现在已经从单页 showcase 迈向结构化 docs。接下来会继续补齐概念说明、API 解释、目录结构和快速入门。
+</Callout>
+
+## 你可以从这里开始
+
+<Cards>
+  <Card
+    title="基本概念"
+    href="/docs/concepts/core-concepts"
+    description="先理解 content、source、layout、page 和 MDX 组件映射之间的关系。"
+  />
+  <Card
+    title="API 介绍"
+    href="/docs/api/overview"
+    description="快速了解 defineDocs、loader、DocsLayout、DocsPage 等关键 API。"
+  />
+  <Card
+    title="目录结构"
+    href="/docs/guides/directory-structure"
+    description="从实际目录出发，看清楚每个文件夹在 Fumadocs 接入中的职责。"
+  />
+  <Card
+    title="快速入门"
+    href="/docs/guides/quickstart"
+    description="按照最小步骤，把一个 Next.js 项目接成可运行的 docs 站。"
+  />
+  <Card
+    title="组件样板"
+    href="/docs/components/button"
+    description="查看当前已经跑通的 Button 文档页，它也是后续组件迁移模板。"
+  />
+</Cards>
+
+## 当前这套实现覆盖了什么
+
+当前阶段重点在三个方向：
+
+- 搭建独立的 docs 路由与内容层
+- 为组件建立单独的文档页面
+- 逐步把现有 showcase 能力迁移到文档体系里
+
+## 后续重点
+
+- 为每个组件补齐文档页
+- 复用现有的 props controls 和代码生成逻辑
+- 接入搜索
+- 最后再补 AI 助手
+
+## 推荐阅读顺序
+
+1. 基本概念
+2. 目录结构
+3. 快速入门
+4. API 介绍
+5. 组件样板

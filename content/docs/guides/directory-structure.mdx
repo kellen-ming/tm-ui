@@ -1,0 +1,91 @@
+---
+title: 目录结构
+description: 从当前仓库的真实文件组织方式出发，理解 Fumadocs 接入后每个目录的职责分工。
+---
+
+## 推荐理解方式
+
+先把目录分成四层：
+
+- 路由层
+- 内容层
+- 组件层
+- source 层
+
+## 当前结构示意
+
+<Files>
+  <Folder name="app" defaultOpen>
+    <Folder name="docs" defaultOpen>
+      <File name="layout.tsx" />
+      <Folder name="[[...slug]]" defaultOpen>
+        <File name="page.tsx" />
+      </Folder>
+    </Folder>
+    <File name="layout.tsx" />
+    <File name="page.tsx" />
+  </Folder>
+  <Folder name="content" defaultOpen>
+    <Folder name="docs" defaultOpen>
+      <File name="meta.json" />
+      <File name="index.mdx" />
+      <Folder name="concepts" defaultOpen>
+        <File name="meta.json" />
+        <File name="core-concepts.mdx" />
+      </Folder>
+      <Folder name="api" defaultOpen>
+        <File name="meta.json" />
+        <File name="overview.mdx" />
+      </Folder>
+      <Folder name="guides" defaultOpen>
+        <File name="meta.json" />
+        <File name="directory-structure.mdx" />
+        <File name="quickstart.mdx" />
+      </Folder>
+      <Folder name="components" defaultOpen>
+        <File name="meta.json" />
+        <File name="button.mdx" />
+      </Folder>
+    </Folder>
+  </Folder>
+  <Folder name="components" defaultOpen>
+    <Folder name="docs" defaultOpen>
+      <Folder name="button-demo" defaultOpen>
+        <File name="index.ts" />
+        <File name="button-demo.tsx" />
+        <File name="readme.md" />
+      </Folder>
+    </Folder>
+  </Folder>
+  <Folder name="lib" defaultOpen>
+    <File name="source.ts" />
+  </Folder>
+  <File name="source.config.ts" />
+  <File name="mdx-components.tsx" />
+</Files>
+
+## 每个目录分别负责什么
+
+<Accordions type="single" collapsible>
+  <Accordion title="app/docs">
+    负责文档站的路由层。`layout.tsx` 是 docs 外壳，`[[...slug]]/page.tsx` 是具体页面渲染器。
+  </Accordion>
+  <Accordion title="content/docs">
+    负责真正的文档内容。以后新增页面，优先在这里写 MDX，而不是先写 React 页面。
+  </Accordion>
+  <Accordion title="components/docs">
+    放文档专用的自定义组件，比如 demo、说明块、交互示例。适合承载比 MDX 更复杂的 UI。
+  </Accordion>
+  <Accordion title="lib/source.ts 与 source.config.ts">
+    一个负责定义 docs 集合，一个负责把它转成 source 能力，二者共同构成 docs 的数据入口。
+  </Accordion>
+</Accordions>
+
+## 什么时候需要新建自定义组件
+
+当出现这些情况时，建议从 MDX 抽成 `components/docs/*`：
+
+- 页面里有复杂交互
+- 同一段内容会被多个页面复用
+- 需要和现有业务组件联动
+- 纯 MDX 已经让页面变得难维护
