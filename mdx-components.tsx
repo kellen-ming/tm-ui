@@ -5,8 +5,9 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
+import { ExampleShowcase } from "@/components/docs/example-showcase";
 
-import { ButtonDemo } from "@/components/docs/button-demo";
+import { ButtonBasicExample, ButtonBasicExampleShowcase } from "@/examples/button";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -20,8 +21,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Tab,
     Tabs,
     TypeTable,
+    ExampleShowcase,
     ...defaultMdxComponents,
-    ButtonDemo,
+    ButtonBasicExample,
+    ButtonBasicExampleShowcase,
     ...components,
   };
 }
+
+

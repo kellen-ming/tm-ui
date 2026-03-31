@@ -77,6 +77,12 @@ export type AccordionProps = React.ComponentPropsWithoutRef<
 > &
   AccordionContext;
 
+/**
+ * this component is used to create an accordion component
+ * support default and outline variant
+ * support single and multiple type
+ * support collapsible and not collapsible
+ */
 const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> &

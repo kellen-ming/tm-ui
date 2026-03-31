@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         },
       ]}
       searchToggle={{
-        enabled: false,
+        enabled: true,
       }}
     >
       {children}

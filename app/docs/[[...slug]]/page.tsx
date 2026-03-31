@@ -23,7 +23,16 @@ export default async function DocPage(props: PageProps) {
   const components = getMDXComponents({});
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.toc}
+      full={page.data.full}
+      tableOfContent={{
+        style: "clerk",
+      }}
+      tableOfContentPopover={{
+        style: "clerk",
+      }}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
