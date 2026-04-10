@@ -1,61 +1,51 @@
 ---
-title: 文档总览
-description: TM UI 组件库文档原型，后续会逐步补充组件说明、示例和最佳实践。
+title: TM UI
+description: 面向品牌营销与内容体验场景的 React 组件库，文档页会持续补充组件说明、示例与最佳实践。
 ---
 
-<Callout type="idea" title="当前阶段">
-  这套文档现在已经从单页 showcase 迈向结构化 docs。接下来会继续补齐概念说明、API 解释、目录结构和快速入门。
+<Callout type="info" title="组件库定位">
+  TM UI 以品牌表达、内容展示和交互质感为重点，适合官网、活动页、专题页和设计驱动型产品界面。
 </Callout>
 
-## 你可以从这里开始
+## 组件库简介
 
 <Cards>
   <Card
-    title="基本概念"
-    href="/docs/concepts/core-concepts"
-    description="先理解 content、source、layout、page 和 MDX 组件映射之间的关系。"
+    title="一致的品牌表达"
+    description="组件在视觉语言上保持统一的间距、圆角、描边和状态反馈，适合做成体系的品牌站点。"
   />
   <Card
-    title="API 介绍"
-    href="/docs/api/overview"
-    description="快速了解 defineDocs、loader、DocsLayout、DocsPage 等关键 API。"
+    title="可复用的示例结构"
+    description="文档页会尽量提供 Preview、代码示例和后续扩展入口，方便沉淀成团队内部的组件资产。"
   />
   <Card
-    title="目录结构"
-    href="/docs/guides/directory-structure"
-    description="从实际目录出发，看清楚每个文件夹在 Fumadocs 接入中的职责。"
+    title="面向真实业务场景"
+    description="不仅关注基础 UI，也会逐步补充更贴近营销页和内容页的组合型模块。"
   />
   <Card
-    title="快速入门"
-    href="/docs/guides/quickstart"
-    description="按照最小步骤，把一个 Next.js 项目接成可运行的 docs 站。"
-  />
-  <Card
-    title="组件样板"
-    href="/docs/components/button"
-    description="查看当前已经跑通的 Button 文档页，它也是后续组件迁移模板。"
+    title="逐步完善中的文档"
+    description="当前阶段先集中建设组件文档本身，后续会继续补 Playground、搜索、复制代码和 AI 助手能力。"
   />
 </Cards>
 
-## 当前这套实现覆盖了什么
+## 当前收录
 
-当前阶段重点在三个方向：
+<Cards>
+  <Card
+    title="Button"
+    href="/docs/components/button"
+    description="查看按钮组件的基础示例、变体说明和使用建议。"
+  />
+  <Card
+    title="Card"
+    href="/docs/components/card"
+    description="查看卡片组件的基础文档，后续会继续补充结构、状态和示例。"
+  />
+</Cards>
 
-- 搭建独立的 docs 路由与内容层
-- 为组件建立单独的文档页面
-- 逐步把现有 showcase 能力迁移到文档体系里
+## 接下来会持续补充
 
-## 后续重点
-
-- 为每个组件补齐文档页
-- 复用现有的 props controls 和代码生成逻辑
-- 接入搜索
-- 最后再补 AI 助手
-
-## 推荐阅读顺序
-
-1. 基本概念
-2. 目录结构
-3. 快速入门
-4. API 介绍
-5. 组件样板
+- 组件 API 与状态说明
+- 上下结构的 Preview / Code 示例块
+- 更多业务型组合组件
+- 搜索、复制代码与交互式 Playground

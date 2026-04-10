@@ -1,26 +1,366 @@
 ---
 title: Button
-description: TM UI 的按钮组件，支持品牌主按钮、次按钮、文本按钮和链接按钮等变体。
+description: TM UI 的基础操作组件，提供多层级视觉变体、尺寸配置与 asChild 组合能力，适用于页面 CTA、表单操作和内容区跳转入口。
 ---
 
-## Example
+import Link from "next/link";
 
-<ButtonBasicExampleShowcase />
+import { Button } from "@/components/ui/tm-button";
 
-## Variants
+Displays a button or a component that looks like a button.
 
-- `primary`
-- `primary-white`
-- `secondary`
-- `secondary-white`
-- `text`
-- `text-white`
-- `link`
-- `link-white`
-- `linear`
+Button 是 TM UI 中最基础也最常用的交互组件之一，适合承载页面中的主要操作、次级操作以及轻量级文本跳转。
+
+## Installation
+
+TM UI 已内置 Button 组件，直接按路径导入即可。
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+```
+
+组件源码位于 `components/ui/tm-button.tsx`，如果后续要统一调整视觉层级、尺寸或状态样式，这个文件会是主要维护入口。
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return <Button>Primary</Button>;
+}
+```
+
+基础场景建议优先从 `primary`、`secondary`、`text` 和 `link` 这四类开始选型，它们基本覆盖了大多数内容页和表单场景。
+
+## Examples
+
+### Default
+
+<div className="not-prose my-6 space-y-3">
+  <p className="docs-example-label">Preview</p>
+  <div className="docs-example-preview">
+    <div className="flex flex-wrap gap-3">
+      <Button>Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="text">Text</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  </div>
+  <p className="docs-example-label">Code</p>
+</div>
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button>Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="text">Text</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  );
+}
+```
+
+### Variants
+
+<div className="not-prose my-6 space-y-3">
+  <p className="docs-example-label">Preview</p>
+  <div className="docs-example-preview space-y-6">
+    <div className="space-y-3">
+      <p className="text-sm font-medium text-fd-muted-foreground">
+        Standard surfaces
+      </p>
+      <div className="flex flex-wrap gap-3">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="text">Text</Button>
+        <Button variant="link">Link</Button>
+        <Button variant="linear">Linear</Button>
+        <Button variant="ghost">Ghost</Button>
+      </div>
+    </div>
+
+    <div className="space-y-3 rounded-3xl bg-slate-950 p-5">
+      <p className="text-sm font-medium text-white/70">Dark surfaces</p>
+      <div className="flex flex-wrap gap-3">
+        <Button variant="primary-white">Primary White</Button>
+        <Button variant="secondary-white">Secondary White</Button>
+        <Button variant="text-white">Text White</Button>
+        <Button variant="link-white">Link White</Button>
+      </div>
+    </div>
+  </div>
+  <p className="docs-example-label">Code</p>
+</div>
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-wrap gap-3">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="text">Text</Button>
+        <Button variant="link">Link</Button>
+        <Button variant="linear">Linear</Button>
+        <Button variant="ghost">Ghost</Button>
+      </div>
+
+      <div className="rounded-3xl bg-slate-950 p-5">
+        <div className="flex flex-wrap gap-3">
+          <Button variant="primary-white">Primary White</Button>
+          <Button variant="secondary-white">Secondary White</Button>
+          <Button variant="text-white">Text White</Button>
+          <Button variant="link-white">Link White</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+推荐使用方式：
+
+- `primary`：页面中的主 CTA，适合一个区域内最重要的操作
+- `secondary`：与主按钮并列出现的次级操作
+- `text`：信息密度较高的模块中使用的低强调操作
+- `link`：更接近正文语义的跳转入口
+- `linear`：更适合营销页、Hero 区域和需要更强视觉吸引力的操作
+- `ghost`：适合中性容器中的悬浮型补充操作
+- `*-white`：用于深色背景、图片背景或品牌色块背景
+
+### Size
+
+<div className="not-prose my-6 space-y-3">
+  <p className="docs-example-label">Preview</p>
+  <div className="docs-example-preview">
+    <div className="flex flex-wrap items-center gap-3">
+      <Button size="sm">Small</Button>
+      <Button size="lg">Large</Button>
+      <Button size="icon" aria-label="Add item">
+        <span aria-hidden>+</span>
+      </Button>
+    </div>
+  </div>
+  <p className="docs-example-label">Code</p>
+</div>
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <Button size="sm">Small</Button>
+      <Button size="lg">Large</Button>
+      <Button size="icon" aria-label="Add item">
+        <span aria-hidden>+</span>
+      </Button>
+    </div>
+  );
+}
+```
+
+尺寸建议：
+
+- `sm`：适合紧凑列表、筛选工具条和辅助操作
+- `lg`：默认尺寸，适合大多数常规按钮
+- `icon`：仅图标按钮，务必补充 `aria-label`
+
+### With Icon
+
+<div className="not-prose my-6 space-y-3">
+  <p className="docs-example-label">Preview</p>
+  <div className="docs-example-preview">
+    <div className="flex flex-wrap gap-3">
+      <Button>
+        Explore
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+          <path d="m12 5 7 7-7 7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </Button>
+      <Button variant="secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path
+            d="M12 3.5 13.7 8.3 18.5 10 13.7 11.7 12 16.5 10.3 11.7 5.5 10 10.3 8.3 12 3.5Z"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          />
+          <path d="M19 3v4" strokeWidth="2" strokeLinecap="round" />
+          <path d="M17 5h4" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+        Generate
+      </Button>
+      <Button variant="text">
+        Learn More
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+          <path d="m12 5 7 7-7 7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </Button>
+    </div>
+  </div>
+  <p className="docs-example-label">Code</p>
+</div>
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button>
+        Explore
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+          <path d="m12 5 7 7-7 7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </Button>
+      <Button variant="secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path
+            d="M12 3.5 13.7 8.3 18.5 10 13.7 11.7 12 16.5 10.3 11.7 5.5 10 10.3 8.3 12 3.5Z"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          />
+          <path d="M19 3v4" strokeWidth="2" strokeLinecap="round" />
+          <path d="M17 5h4" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+        Generate
+      </Button>
+      <Button variant="text">
+        Learn More
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+          <path d="m12 5 7 7-7 7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </Button>
+    </div>
+  );
+}
+```
+
+当按钮内混合文本和图标时，尽量保持图标语义明确，并确保主要操作文案仍然可读。
+
+### Rounded
+
+<div className="not-prose my-6 space-y-3">
+  <p className="docs-example-label">Preview</p>
+  <div className="docs-example-preview">
+    <div className="flex flex-wrap gap-3">
+      <Button className="rounded-full">Start Free Trial</Button>
+      <Button variant="secondary" className="rounded-full">
+        Contact Sales
+      </Button>
+      <Button size="icon" className="rounded-full" aria-label="Continue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+          <path d="m12 5 7 7-7 7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </Button>
+    </div>
+  </div>
+  <p className="docs-example-label">Code</p>
+</div>
+
+```tsx
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button className="rounded-full">Start Free Trial</Button>
+      <Button variant="secondary" className="rounded-full">
+        Contact Sales
+      </Button>
+      <Button size="icon" className="rounded-full" aria-label="Continue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden>
+          <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+          <path d="m12 5 7 7-7 7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </Button>
+    </div>
+  );
+}
+```
+
+使用 `rounded-full` 等额外类名可以快速扩展按钮造型，而不需要额外新增一个变体。
+
+### As Child
+
+<div className="not-prose my-6 space-y-3">
+  <p className="docs-example-label">Preview</p>
+  <div className="docs-example-preview">
+    <div className="flex flex-wrap gap-3">
+      <Button asChild>
+        <Link href="/docs/components/card">Open Card Docs</Link>
+      </Button>
+      <Button asChild variant="secondary">
+        <Link href="/docs">Back to Overview</Link>
+      </Button>
+      <Button asChild variant="link">
+        <Link href="/docs/components/button">View Current Page</Link>
+      </Button>
+    </div>
+  </div>
+  <p className="docs-example-label">Code</p>
+</div>
+
+```tsx
+import Link from "next/link";
+
+import { Button } from "@/components/ui/tm-button";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button asChild>
+        <Link href="/docs/components/card">Open Card Docs</Link>
+      </Button>
+      <Button asChild variant="secondary">
+        <Link href="/docs">Back to Overview</Link>
+      </Button>
+      <Button asChild variant="link">
+        <Link href="/docs/components/button">View Current Page</Link>
+      </Button>
+    </div>
+  );
+}
+```
+
+当你希望按钮继承链接、路由组件或其他可交互元素的语义时，可以使用 `asChild`。这能保留目标元素本身的行为，同时复用 Button 的视觉样式与状态。
+
+## API Reference
+
+### Button
+
+`Button` 是对原生 `button` 元素的一层样式封装，同时支持通过 `asChild` 透传给链接或其他交互元素。
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | required | 按钮内部内容，通常是文本、图标或两者组合。 |
+| `variant` | `"primary" \| "primary-white" \| "secondary" \| "secondary-white" \| "text" \| "text-white" \| "link" \| "link-white" \| "linear" \| "ghost"` | `"primary"` | 控制按钮的视觉层级和表面样式。 |
+| `size` | `"sm" \| "lg" \| "icon"` | `"lg"` | 控制按钮尺寸。`icon` 适用于仅图标按钮。 |
+| `asChild` | `boolean` | `false` | 启用后不会直接渲染 `button`，而是把样式和行为透传给子元素。 |
+| `type` | `"button" \| "submit" \| "reset"` | browser default | 表单场景建议显式声明。 |
+| `disabled` | `boolean` | `false` | 禁用按钮交互，并自动应用禁用态样式。 |
+| `className` | `string` | - | 用于叠加额外样式类名，适合处理局部布局或特殊造型。 |
 
 ## Notes
 
-- 默认尺寸是 `lg`
-- 组件支持 `asChild`
-- 文档站后续会继续补充交互式 props 配置和代码复制能力
+<Callout type="warn" title="表单场景建议">
+  在表单或弹窗里使用按钮时，建议显式传入 `type="button"`、`type="submit"` 或 `type="reset"`，避免依赖浏览器默认行为。
+</Callout>
+
+- 一个内容区域内通常只保留一个 `primary` 按钮，避免视觉主次混乱
+- `*-white` 变体应放在深色或高对比背景上，避免边界和文本层级不清晰
+- 图标按钮必须提供清晰的 `aria-label`
+- 如果只是页面内的文字跳转，优先考虑 `link` 或 `text`，不要滥用高强调按钮
+- 使用清晰的动词文案，例如“提交申请”“查看详情”“继续下一步”

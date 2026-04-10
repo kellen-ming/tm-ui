@@ -298,6 +298,61 @@
   }
 }
 
+@layer components {
+  .prose
+    :where(h2):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+    font-size: var(--font-size-4xl);
+    line-height: var(--font-size-4xl--line-height);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose
+    :where(h3):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+    font-size: var(--font-size-2xl);
+    line-height: var(--font-size-2xl--line-height);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .prose
+    :where(h4):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+    font-size: var(--font-size-lg);
+    line-height: var(--font-size-lg--line-height);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .docs-example-label {
+    color: var(--color-fd-muted-foreground);
+    font-size: var(--font-size-xs);
+    line-height: var(--font-size-xs--line-height);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .docs-example-preview {
+    border: 1px solid var(--color-fd-border);
+    background: var(--color-fd-card);
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  }
+}
+
 @layer utilities {
   .bg-linear-button {
     background: linear-gradient(112deg, #6938ef 27.62%, #e833be 59.64%, #ff5924 100%);
